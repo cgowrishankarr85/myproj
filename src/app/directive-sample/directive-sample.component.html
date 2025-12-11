@@ -1,0 +1,77 @@
+<p>directive-sample works!</p>
+<h4> *ngIf</h4>
+<span> Enter a Number:</span>
+<input type="text" [(ngModel)]="num"/>
+
+@if (num%2==0) {
+  <p>
+    <b>
+      Number is even
+    </b>
+  </p>
+} @else {
+  <p>
+    <b>
+      Number is odd
+    </b>
+  </p>
+}
+
+<h4> *ngFor</h4>
+<ul>
+  @for (c of colors; track c) {
+    <li>
+      {{c}}
+    </li>
+  }
+</ul>
+<select [(ngModel)] ="selectedColor">
+  @for (c of colors; track c) {
+    <option >
+      {{c}}
+    </option>
+  }
+</select>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>
+        Prodct Id
+      </th>
+      <th>
+        Prodct Name
+      </th>
+      <th>
+        Product Code
+      </th>
+      <th>
+        Price
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--[class.r1]="prod.price<100" [class.b1]="prod.price>50"-->
+    @for (prod of products; track prod) {
+      <tr [style.color]="selectedColor">
+        <td>
+          {{prod.productId}}
+        </td>
+        <td>
+          {{prod.productName}}
+        </td>
+        <td>
+          {{prod.productCode}}
+        </td>
+        <td>
+          {{prod.price}}
+          @if (prod.price>40) {
+            <i>Discount Avilable</i>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+<input type="button" (click)="addNewProduct()" value="Add New"/>
+
